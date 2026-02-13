@@ -1,0 +1,29 @@
+# This is a Databricks asset bundle definition for InternBoard.
+# The Databricks extension requires databricks.yml configuration file.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+
+bundle:
+  name: InternBoard
+
+targets:
+  dev:
+    mode: development
+    default: true
+  prod:
+    workspace:
+      host: https://dbc-c8f0798b-6927.cloud.databricks.com
+
+resources:
+  jobs:
+    internboard-job:
+      name: "SpamApply"
+      tasks:
+        - task_key: "run_notebook"
+          notebook_task:
+            notebook_path: ./notebooks/run_ingestion.py
+
+  ## Optionally, there could be 'staging' or 'prod' targets here.
+  #
+  # prod:
+  #   workspace:
+  #     host: https://dbc-c8f0798b-6927.cloud.databricks.com
